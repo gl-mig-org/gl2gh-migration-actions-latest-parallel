@@ -53,10 +53,10 @@ jobs:
     runs-on: ["${{ inputs.RUNNER_LABEL }}"]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Cache node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: node_modules/
           key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json', 'package.json') }}
@@ -277,10 +277,10 @@ jobs:
     needs: [getting-env-ready]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Cache node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: node_modules/
           key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json', 'package.json') }}
@@ -381,10 +381,10 @@ jobs:
     needs: [validate-prerequisites]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Cache node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: node_modules/
           key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json', 'package.json') }}
@@ -419,7 +419,7 @@ jobs:
           printf '\n'
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: pre-migration-readiness-check-artifacts
           retention-days: 7
@@ -436,7 +436,7 @@ jobs:
       name: approve-after-readiness-check
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: pre-migration-readiness-check-artifacts
           path: .
@@ -463,10 +463,10 @@ jobs:
       ARCHIVE_LIST_BASENAME: ${{ steps.capture.outputs.ARCHIVE_LIST_BASENAME }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Cache node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: node_modules/
           key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json', 'package.json') }}
@@ -551,7 +551,7 @@ jobs:
           echo "ARCHIVE_LIST_BASENAME=$ARCHIVE_LIST_BASENAME" >> "$GITHUB_OUTPUT"
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: generate-migration-archives-artifacts
           retention-days: 7
@@ -571,16 +571,16 @@ jobs:
       UPLOADED_ARCHIVES_BASENAME: ${{ steps.capture.outputs.UPLOADED_ARCHIVES_BASENAME }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: generate-migration-archives-artifacts
           path: .
 
       - name: Cache node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: node_modules/
           key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json', 'package.json') }}
@@ -653,7 +653,7 @@ jobs:
           echo "UPLOADED_ARCHIVES_BASENAME=$UPLOADED_ARCHIVES_BASENAME" >> "$GITHUB_OUTPUT"
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: upload-migration-archives-artifacts
           retention-days: 7
@@ -670,16 +670,16 @@ jobs:
     needs: [upload-migration-archives]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: upload-migration-archives-artifacts
           path: .
 
       - name: Cache node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: node_modules/
           key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json', 'package.json') }}
@@ -734,7 +734,7 @@ jobs:
           printf '\n'
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: start-repository-migration-artifacts
           retention-days: 7
@@ -750,28 +750,28 @@ jobs:
     needs: [pre-migration-readiness-check, generate-migration-archives, upload-migration-archives, start-repository-migration]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Download pre-migration artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: pre-migration-readiness-check-artifacts
           path: .
 
       - name: Download generate artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: generate-migration-archives-artifacts
           path: .
 
       - name: Download upload artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: upload-migration-archives-artifacts
           path: .
 
       - name: Download start artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: start-repository-migration-artifacts
           path: .
@@ -879,7 +879,7 @@ jobs:
           } | tee "$SUMMARY_FILE"
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: display-final-summary-artifacts
           retention-days: 7

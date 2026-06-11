@@ -182,13 +182,13 @@ GitHub Repository → Settings → Environments → <ENVIRONMENT_NAME>
 
 | Name | Description |
 |------|-------------|
-| SOURCE_GL_SERVER_URL | GitLab URL |
-| GITLAB_USERNAME | GitLab user |
+| SOURCE_GL_SERVER_URL | https://gitlab.company.com |
+| GITLAB_USERNAME | gitlab-user |
 | GH_HOST | github.com or SUBDOMAIN.ghe.com |
 | STORAGE_TYPE | GITHUB / AZURE / AWS |
-| AZ_CONTAINER | Required for Azure |
-| AWS_BUCKET_NAME | Required for AWS |
-| AWS_REGION | Required for AWS |
+| AZ_CONTAINER | Required only if STORAGE_TYPE = Azure |
+| AWS_BUCKET_NAME | Required only if STORAGE_TYPE = AWS |
+| AWS_REGION | Required only if STORAGE_TYPE = AWS |
 
 ---
 
@@ -198,9 +198,9 @@ GitHub Repository → Settings → Environments → <ENVIRONMENT_NAME>
 |------|-------------|
 | GITLAB_API_PRIVATE_TOKEN | GitLab token |
 | GH_PAT | GitHub PAT |
-| AZURE_STORAGE_CONNECTION_STRING | Required for Azure |
-| AWS_ACCESS_KEY_ID | Required for AWS |
-| AWS_SECRET_ACCESS_KEY | Required for AWS |
+| AZURE_STORAGE_CONNECTION_STRING | Required only if STORAGE_TYPE = Azure |
+| AWS_ACCESS_KEY_ID | Required only if STORAGE_TYPE = AWS |
+| AWS_SECRET_ACCESS_KEY | Required only if STORAGE_TYPE = AWS |
 
 ## 7. GitHub Environment Setup
 

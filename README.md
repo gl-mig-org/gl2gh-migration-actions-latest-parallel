@@ -168,59 +168,39 @@ Fill in the target GitHub organization and repository name for each row.
 ### 5.3 Upload Inventory to GitHub Repository
 Upload the updated CSV into the GitHub repository so the pipeline can access it.
 
-## 6. CI/CD Variable Setup - GitHub
+## 6. CI/CD Variable Setup (GitHub Environment)
 
-Configure variables and secrets in:
+All variables and secrets must be configured at the **GitHub Environment level**, not at the repository level.
 
-**GitHub Repository → Settings → Secrets and variables → Actions**
+Navigate to:
 
-### 6.1 Repository Variables
+GitHub Repository → Settings → Environments → <ENVIRONMENT_NAME>
 
-| Name | Value |
-|--------|-------------|
-| `SOURCE_GL_SERVER_URL` | `https://gitlab.company.com` |
-| `GITLAB_USERNAME` | `gitlab-user` |
-| `GH_HOST` | `github.com` or `SUBDOMAIN.ghe.com` |
-| `STORAGE_TYPE` | `GITHUB`, `AZURE`, or `AWS` |
+---
 
-### 6.2 Repository Secrets
+### Environment Variables
 
-| Name | Secret |
-|--------|-------------|
-| `GITLAB_API_PRIVATE_TOKEN` | `glpat-xxxxxxx` |
-| `GH_PAT` | `ghp_xxxxx` |
+| Name | Description |
+|------|-------------|
+| SOURCE_GL_SERVER_URL | GitLab URL |
+| GITLAB_USERNAME | GitLab user |
+| GH_HOST | github.com or SUBDOMAIN.ghe.com |
+| STORAGE_TYPE | GITHUB / AZURE / AWS |
+| AZ_CONTAINER | Required for Azure |
+| AWS_BUCKET_NAME | Required for AWS |
+| AWS_REGION | Required for AWS |
 
-### 6.3 Azure Storage Variables and Secrets
-Required only when `STORAGE_TYPE=AZURE`.
+---
 
-Repository variable:
+### Environment Secrets
 
-| Name | Value |
-|--------|-------------|
-| `AZ_CONTAINER` | `container-name` |
-
-Repository secret:
-
-| Name | Secret |
-|--------|-------------|
-| `AZURE_STORAGE_CONNECTION_STRING` | `connection-string` |
-
-### 6.4 AWS Storage Variables and Secrets
-Required only when `STORAGE_TYPE=AWS`.
-
-Repository variables:
-
-| Name | Value |
-|--------|-------------|
-| `AWS_BUCKET_NAME` | `aws-bucket` |
-| `AWS_REGION` | `us-west-2` |
-
-Repository secrets:
-
-| Name | Secret |
-|--------|-------------|
-| `AWS_ACCESS_KEY_ID` | `access-id` |
-| `AWS_SECRET_ACCESS_KEY` | `aws-secret-key` |
+| Name | Description |
+|------|-------------|
+| GITLAB_API_PRIVATE_TOKEN | GitLab token |
+| GH_PAT | GitHub PAT |
+| AZURE_STORAGE_CONNECTION_STRING | Required for Azure |
+| AWS_ACCESS_KEY_ID | Required for AWS |
+| AWS_SECRET_ACCESS_KEY | Required for AWS |
 
 ## 7. GitHub Environment Setup
 
